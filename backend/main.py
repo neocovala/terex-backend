@@ -10,7 +10,14 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 app = FastAPI(title="Terex AI POC — NeoSoft Digital", version="2.0.0")
-app.add_middleware(CORSMiddleware,allow_origins=["*"],allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://terex-backend.vercel.app", "http://localhost:3000"],
+    allow_origin_regex=r"https://terex-backend-[a-z0-9-]+\.vercel\.app",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 import sys
 sys.path.insert(0, os.path.dirname(__file__))
