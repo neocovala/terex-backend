@@ -1,0 +1,73 @@
+// Ported from backend/services/realistic_data.py — real Bangalore BBMP routes + Heil fleet data.
+
+export const ROUTES = [
+  {
+    route_id: "BLR-R01-WHITEFIELD", name: "Whitefield Industrial & Residential",
+    bbmp_zone: "Mahadevapura Zone", bbmp_wards: ["Ward 84 - Whitefield", "Ward 85 - Varthur"],
+    depot: "DEPOT-WHITEFIELD", depot_addr: "Plot 14, EPIP Zone, Whitefield, Bangalore 560066",
+    area: "Whitefield", risk_level: "LOW", school_zone: false, market_zone: false,
+    distance_km: 22.4, households: 8400, muster_time: "05:30", collection_start: "06:00",
+    collection_end: "14:00", wet_waste_kg_day: 2600, gps_center: [12.9698, 77.7500],
+    peak_traffic_hrs: ["08:00-10:00", "17:30-19:30"], school_timing: null,
+  },
+  {
+    route_id: "BLR-R02-KORAMANGALA", name: "Koramangala Residential & Commercial",
+    bbmp_zone: "Bommanahalli Zone", bbmp_wards: ["Ward 68 - Koramangala 1-3 Block", "Ward 69 - Koramangala 4-8 Block"],
+    depot: "DEPOT-KORAMANGALA", depot_addr: "Sy No. 45, 7th Block, Koramangala, Bangalore 560095",
+    area: "Koramangala", risk_level: "HIGH", school_zone: true, market_zone: true,
+    distance_km: 18.6, households: 12800, muster_time: "05:30", collection_start: "08:15",
+    collection_end: "15:00", wet_waste_kg_day: 3950, gps_center: [12.9279, 77.6271],
+    peak_traffic_hrs: ["08:00-10:00", "13:00-14:00", "17:00-19:00"], school_timing: "08:30-09:15",
+    school_name: "National Public School, Koramangala",
+  },
+  {
+    route_id: "BLR-R03-INDIRANAGAR", name: "Indiranagar Commercial & Residential",
+    bbmp_zone: "East Zone", bbmp_wards: ["Ward 82 - Indiranagar", "Ward 83 - Domlur"],
+    depot: "DEPOT-INDIRANAGAR", depot_addr: "100 Feet Road, HAL 2nd Stage, Indiranagar, Bangalore 560038",
+    area: "Indiranagar", risk_level: "MEDIUM", school_zone: false, market_zone: true,
+    distance_km: 15.2, households: 9200, muster_time: "05:30", collection_start: "06:30",
+    collection_end: "13:30", wet_waste_kg_day: 2840, gps_center: [12.9784, 77.6408],
+    peak_traffic_hrs: ["08:00-10:00", "17:00-19:30"], school_timing: null,
+  },
+  {
+    route_id: "BLR-R04-HSR", name: "HSR Layout Sectors 1-3",
+    bbmp_zone: "Bommanahalli Zone", bbmp_wards: ["Ward 150 - HSR Layout"],
+    depot: "DEPOT-HSR", depot_addr: "Sector 2, 27th Main, HSR Layout, Bangalore 560102",
+    area: "HSR Layout", risk_level: "LOW", school_zone: false, market_zone: false,
+    distance_km: 20.1, households: 11200, muster_time: "05:30", collection_start: "06:00",
+    collection_end: "14:00", wet_waste_kg_day: 3460, gps_center: [12.9116, 77.6389],
+    peak_traffic_hrs: ["08:30-10:00", "17:30-19:30"], school_timing: null,
+  },
+  {
+    route_id: "BLR-R05-BTM", name: "BTM Layout & JP Nagar",
+    bbmp_zone: "South Zone", bbmp_wards: ["Ward 151 - BTM Layout", "Ward 153 - JP Nagar"],
+    depot: "DEPOT-BTM", depot_addr: "1st Stage, BTM Layout, Bangalore 560076",
+    area: "BTM Layout", risk_level: "MEDIUM", school_zone: true, market_zone: false,
+    distance_km: 17.8, households: 13600, muster_time: "05:30", collection_start: "06:45",
+    collection_end: "14:30", wet_waste_kg_day: 4200, gps_center: [12.9166, 77.6101],
+    peak_traffic_hrs: ["08:00-09:30", "17:00-19:00"], school_timing: "08:45-09:30",
+    school_name: "Delhi Public School, BTM Layout",
+  },
+  {
+    route_id: "BLR-R06-MARATHAHALLI", name: "Marathahalli & Outer Ring Road",
+    bbmp_zone: "Mahadevapura Zone", bbmp_wards: ["Ward 86 - Marathahalli", "Ward 87 - Kadubeesanahalli"],
+    depot: "DEPOT-MARATHAHALLI", depot_addr: "Kadubeesanahalli, Marathahalli, Bangalore 560037",
+    area: "Marathahalli", risk_level: "LOW", school_zone: false, market_zone: false,
+    distance_km: 24.3, households: 7800, muster_time: "05:30", collection_start: "05:45",
+    collection_end: "13:30", wet_waste_kg_day: 2410, gps_center: [12.9561, 77.7014],
+    peak_traffic_hrs: ["08:00-10:00", "17:30-20:00"], school_timing: null,
+  },
+];
+
+export const TRUCKS = [
+  { truck_id: "KA-01-AA-4521", short_id: "TRUCK-001", model: "Heil Half/Pack 3000", year: 2021, assigned_route: "BLR-R01-WHITEFIELD", driver: "Ramesh Kumar V", driver_id: "DRV-001", health_story: "stable", hydraulic_filter_micron: 10, mileage_km: 48200 },
+  { truck_id: "KA-01-AA-4522", short_id: "TRUCK-002", model: "Heil Half/Pack 3000", year: 2021, assigned_route: "BLR-R02-KORAMANGALA", driver: "Suresh Babu N", driver_id: "DRV-002", health_story: "stable", hydraulic_filter_micron: 10, mileage_km: 51400 },
+  { truck_id: "KA-01-AA-4523", short_id: "TRUCK-003", model: "Heil Half/Pack 3000", year: 2019, assigned_route: "BLR-R02-KORAMANGALA", driver: "Manjunath S", driver_id: "DRV-003", health_story: "degrading", hydraulic_filter_micron: 10, mileage_km: 89600 },
+  { truck_id: "KA-01-AA-4524", short_id: "TRUCK-004", model: "Heil DuraPack 5000", year: 2022, assigned_route: "BLR-R03-INDIRANAGAR", driver: "Vijay Kumar R", driver_id: "DRV-004", health_story: "stable", hydraulic_filter_micron: 3, mileage_km: 34100 },
+  { truck_id: "KA-01-AA-4525", short_id: "TRUCK-005", model: "Heil DuraPack 5000", year: 2022, assigned_route: "BLR-R04-HSR", driver: "Prasad T K", driver_id: "DRV-005", health_story: "stable", hydraulic_filter_micron: 3, mileage_km: 31800 },
+  { truck_id: "KA-01-AA-4526", short_id: "TRUCK-006", model: "Heil Half/Pack 3000", year: 2020, assigned_route: "BLR-R05-BTM", driver: "Nagesh M B", driver_id: "DRV-006", health_story: "stable", hydraulic_filter_micron: 10, mileage_km: 62300 },
+  { truck_id: "KA-01-AA-4527", short_id: "TRUCK-007", model: "Heil DuraPack 5000", year: 2019, assigned_route: "BLR-R03-INDIRANAGAR", driver: "Ravi Shankar P", driver_id: "DRV-007", health_story: "incident", hydraulic_filter_micron: 3, mileage_km: 91200 },
+  { truck_id: "KA-01-AA-4528", short_id: "TRUCK-008", model: "Heil DuraPack 5000", year: 2023, assigned_route: "BLR-R06-MARATHAHALLI", driver: "Kiran Kumar A", driver_id: "DRV-008", health_story: "stable", hydraulic_filter_micron: 3, mileage_km: 18600 },
+  { truck_id: "KA-01-AA-4529", short_id: "TRUCK-009", model: "Heil Half/Pack 3000", year: 2021, assigned_route: "BLR-R04-HSR", driver: "Santosh B R", driver_id: "DRV-009", health_story: "stable", hydraulic_filter_micron: 10, mileage_km: 44700 },
+  { truck_id: "KA-01-AA-4530", short_id: "TRUCK-010", model: "Heil DuraPack 5000", year: 2022, assigned_route: "BLR-R06-MARATHAHALLI", driver: "Deepak N S", driver_id: "DRV-010", health_story: "stable", hydraulic_filter_micron: 3, mileage_km: 29300 },
+];

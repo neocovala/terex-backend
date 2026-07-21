@@ -1,11 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import { localApi } from "./backend/api.js";
 
-const API_ROOT = import.meta.env.VITE_API_URL || (window.location.hostname==="localhost"?"http://localhost:8000":"");
-const API = API_ROOT+"/api/demo";
 async function api(path, opts={}) {
-  const r = await fetch(API+path, {headers:{"Content-Type":"application/json"},...opts});
-  if(!r.ok) throw new Error(await r.text());
-  return r.json();
+  return localApi("/api/demo"+path, opts);
 }
 
 const DARK = {
@@ -1562,13 +1559,9 @@ function TestPanel() {
   const [summary, setSummary] = useState(null);
   const [expanded, setExpanded] = useState(null);
 
-  // Direct fetch — bypasses the /api/demo prefix of the global api() function
-  const BASE = API_ROOT;
-  const get  = (path) => fetch(BASE+path).then(r=>r.json());
-  const post = (path, body={}) => fetch(BASE+path, {
-    method:"POST", headers:{"Content-Type":"application/json"},
-    body: JSON.stringify(body)
-  }).then(r=>r.json());
+  // Bypasses the /api/demo prefix of the global api() function
+  const get  = (path) => localApi(path);
+  const post = (path, body={}) => localApi(path, {method:"POST", body: JSON.stringify(body)});
 
   const TESTS = [
     // ── SYSTEM ──────────────────────────────────────────────────────────────
@@ -1737,7 +1730,7 @@ function TestPanel() {
       name:"AI Agent: Safety Inspector — score + risks + recommendations",
       desc:"Run on TRUCK-003 — must return structured safety analysis",
       run: async () => {
-        const controller = new AbortController(); const tid = setTimeout(()=>controller.abort(), 30000); const r = await fetch(API_ROOT+"/api/demo/safety-inspector?truck_id=TRUCK-003",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}",signal:controller.signal}).then(x=>x.json()); clearTimeout(tid);
+        const r = await localApi("/api/demo/safety-inspector?truck_id=TRUCK-003",{method:"POST",body:"{}"});
         const a = r.analysis||{};
         return {
           ok: a.safety_score!==undefined && a.top_risks?.length>0 && a.recommendations?.length>0,
